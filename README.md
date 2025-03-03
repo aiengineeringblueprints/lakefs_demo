@@ -17,8 +17,11 @@ docker compose up
 
 ### LakeCtl
 - LakeCtl Client installieren
-	1. download + entpacken (evtl curl -O  https://github.com/treeverse/lakeFS/releases/download/v1.49.1/lakeFS_1.49.1_Linux_x86_64.tar.gz + entpacken via terminal?)
-	2. `chmod +x mc ` und `sudo mv mc /usr/local/bin/`
+	1. download + entpacken 
+        - wget https://github.com/treeverse/lakeFS/releases/download/v1.49.1/lakeFS_1.49.1_Linux_x86_64.tar.gz
+        - tar xfvz lakeFS_1.49.1_Linux_x86_64.tar.gz
+	2. `chmod +x lake* `
+    3. sudo cp lake* /usr/local/bin/
 - lakectl config
 Access Key: AKIAIOSFOLKFSSAMPLES
 Secret Key: wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
