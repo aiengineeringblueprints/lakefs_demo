@@ -31,7 +31,7 @@ URL: http://127.0.0.1:8000/api/v1
 ## 2. Setup MinIO Bucket, LakeFS Repo and upload data: 
 1. MinIO Bucket erstellen (`mc mb localminio/bucket-name`)
 2. LakeFS Repository erstellen (`lakectl repo create lakefs://repo-name s3://bucket-name`)
-3. Daten uploaden: `mc cp /home/nico/Dokumente/Data/dragonball/ lakefs/dragonball/main --recursive`
+3. Daten uploaden: `mc mirror --overwrite /home/path/to/data localminio/bucket-name`  ... was `mc cp /home/nico/Dokumente/Data/dragonball/ lakefs/dragonball/main --recursive`
 4. Commit data: `lakectl commit lakefs://dragonball/main -m "Upload dragonball data"`
 
 ## 3. Usage (lakefs local siehe: https://docs.lakefs.io/quickstart/work-with-data-locally.html)
