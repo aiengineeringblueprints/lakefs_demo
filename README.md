@@ -25,6 +25,7 @@ docker compose up
 - lakectl config
 Access Key: AKIAIOSFOLKFSSAMPLES
 Secret Key: wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
+URL: http://127.0.0.1:8000/api/v1
 - Testen: `lakectl repo list`
 
 ## 2. Setup MinIO Bucket, LakeFS Repo and upload data: 
