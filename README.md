@@ -38,9 +38,9 @@ docker compose up
 4. Commit data: `lakectl commit lakefs://repo-name/main -m "Upload data" `
 
 ## 3. Usage (lakefs local siehe: https://docs.lakefs.io/quickstart/work-with-data-locally.html oder https://docs.lakefs.io/howto/local-checkouts.html)
-1. Create Branch: `lakectl branch create lakefs://repo-name/dev --source lakefs://repo-name/main` --> man befindet sich dann automaitsch mit den folgenden Commands in diesem Branch
+1. Create Branch: `lakectl branch create lakefs://repo-name/dev --source lakefs://repo-name/main`
 2. minio in DNS hinzufügen (um Fehler bei der DNS Auflösung zu vermeiden) `sudo nano /etc/hosts` --> Zeile hinzufügen für `127.0.0.0 minio`
-3. Git Repo erstellen (falls der Ordner nicht gecloned wurde): `git init`
+3. Git Repo erstellen (falls der Ordner nicht sowieso schon teil eines git Projekts ist): `git init`
 4. Zielordner für das Kopieren der Daten erstellen `mkdir data`
 5. Clone Data to local folder, also adds the data to the .gitignore. Note: The Project must be git tracked! `lakectl local clone lakefs://repo-name/dev/data/ data`
 6. (for later update use `lakectl local checkout`)
