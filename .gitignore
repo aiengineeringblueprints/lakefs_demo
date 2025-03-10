@@ -3,3 +3,4 @@ data/*
 !data/.lakefs_ref.yaml
 # End ignored by lakectl local
 .venv/
+using_it
