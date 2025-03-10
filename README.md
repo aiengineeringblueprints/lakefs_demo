@@ -8,8 +8,8 @@ docker compose up
 ### MinIO
 - MinIO Client installieren
     ```
-    curl -O https://dl.min.io/client/mc/release/linux-amd64/mc 
-    chmod +x mc 
+    curl -O https://dl.min.io/client/mc/release/linux-amd64/mc
+    chmod +x mc
     sudo mv mc /usr/local/bin/
     ```
 - `mc alias set localminio http://127.0.0.1:9000 minioadmin minioadmin`
@@ -30,10 +30,10 @@ docker compose up
     - URL: `http://127.0.0.1:8000/api/v1`
 - Testen: `lakectl repo list`
 
-## 2. Setup MinIO Bucket, LakeFS Repo and upload data: 
+## 2. Setup MinIO Bucket, LakeFS Repo and upload data:
 1. MinIO Bucket erstellen (`mc mb localminio/bucket-name`)
 2. LakeFS Repository erstellen (`lakectl repo create lakefs://repo-name s3://bucket-name`)
-3. evtl. ordner erstellen (`mkdir data`) und Datei erstellen (`cd data` + `echo "das ist ein test text" > testfile.txt`) 
+3. Evtl. Ordner und Daten erstellen (`mkdir -p data ; cd data && echo "das ist ein test text" > testfile.txt && cd ..`)
 3. Daten uploaden: `mc cp ./data/ lakefs/repo-name/main/data --recursive`
 4. Commit data: `lakectl commit lakefs://repo-name/main -m "Upload data"`
 
@@ -45,14 +45,14 @@ docker compose up
 5. Clone Data to local folder, also adds the data to the .gitignore. Note: The Project must be git tracked! `lakectl local clone lakefs://repo-name/dev/data/ data`
 6. (for later update use `lakectl local checkout`)
 7. ... process_data.py
-8. `lakectl local status data/` shows the changes 
-9. commit and push to lakefs `lakectl local commit -m "resizing all data" data` 
+8. `lakectl local status data/` shows the changes
+9. commit and push to lakefs `lakectl local commit -m "resizing all data" data`
 10. merge back to main branch `lakectl merge lakefs://repo-name/dev/ lakefs://repo-name/main`
-11. handle git `git add .` + `git commit -m "first change"`+ `git push` 
+11. handle git `git add .` + `git commit -m "first change"`+ `git push`
 
-## Further Commands: https://docs.lakefs.io/reference/cli.html 
-- `lakectl local list` in git repo root shows the directory that is synced with lakeFS 
-- `lakectl local init lakefs://repo-name/main/test nameofnewfolder/` to link a new local folder to lakefs  
+## Further Commands: https://docs.lakefs.io/reference/cli.html
+- `lakectl local list` in git repo root shows the directory that is synced with lakeFS
+- `lakectl local init lakefs://repo-name/main/test nameofnewfolder/` to link a new local folder to lakefs
 
 ## Reproduce a model
 - `git checkout $commitId`
