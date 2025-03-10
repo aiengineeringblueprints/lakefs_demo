@@ -35,7 +35,7 @@ docker compose up
 2. LakeFS Repository erstellen (`lakectl repo create lakefs://repo-name s3://bucket-name`)
 3. Evtl. Ordner und Daten erstellen (`mkdir -p data ; cd data && echo "das ist ein test text" > testfile.txt && cd ..`)
 3. Daten uploaden: `mc cp ./data/ lakefs/repo-name/main/data --recursive`
-4. Commit data: `lakectl commit lakefs://repo-name/main -m "Upload data"`
+4. Commit data: `lakectl commit lakefs://repo-name/main -m "Upload data" `
 
 ## 3. Usage (lakefs local siehe: https://docs.lakefs.io/quickstart/work-with-data-locally.html oder https://docs.lakefs.io/howto/local-checkouts.html)
 1. Create Branch: `lakectl branch create lakefs://repo-name/dev --source lakefs://repo-name/main` --> man befindet sich dann automaitsch mit den folgenden Commands in diesem Branch
