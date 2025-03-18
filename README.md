@@ -27,7 +27,7 @@ docker compose up
 - Konfiguration von Lakectl `lakectl config`
     - Acces Key: `AKIAIOSFOLKFSSAMPLES`
     - Secure Key: `wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY`
-    - URL: `http://127.0.0.1:8000/api/v1`
+    - URL: `http://127.0.0.1:8000/api/v1` 
 - Testen: `lakectl repo list`
 
 ## 2. Setup MinIO Bucket, LakeFS Repo and upload data:
@@ -37,12 +37,25 @@ docker compose up
 3. Daten uploaden: `mc cp ./data/ lakefs/repo-name/main/data --recursive`
 4. Commit data: `lakectl commit lakefs://repo-name/main -m "Upload data" `
 
+## 2.1 Setup local machine for remote server
+1. Set mc aliases: 
+- `mc alias set remoteminio http://192.168.1.97:9000 minioadmin minioadmin` # Note: This needs to be your remote-server IP
+- `mc alias set remotelakefs http://192.168.1.97:8000 AKIAIOSFOLKFSSAMPLES wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY` # Note: This needs to be your remote-server IP
+2. Set lakectl config
+`lakectl config`
+    - Acces Key: `AKIAIOSFOLKFSSAMPLES`
+    - Secure Key: `wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY`
+    - URL: `http://192.168.1.97:8000/api/v1` # Note: This needs to be your remote-server IP
+Note: 
+- For mc mb ... commands you need to use "remoteminio" instead of "localminio" and "remotelakefs" instead of "lakefs"
+- for lakectl commands, since this is configured to be the remote, use lakefs://... and s3://...
+
 ## 3. Usage (lakefs local siehe: https://docs.lakefs.io/quickstart/work-with-data-locally.html oder https://docs.lakefs.io/howto/local-checkouts.html)
 1. Create Branch: `lakectl branch create lakefs://repo-name/dev --source lakefs://repo-name/main`
-2. minio in DNS hinzufügen (um Fehler bei der DNS Auflösung zu vermeiden) `sudo nano /etc/hosts` --> Zeile hinzufügen für `127.0.0.0 minio`
+2. minio in DNS hinzufügen (um Fehler bei der DNS Auflösung zu vermeiden) `sudo nano /etc/hosts` --> Zeile hinzufügen für `127.0.0.0 minio` # Note: for remote server usage use the remote server IP adress here
 3. Git Repo erstellen (falls der Ordner nicht sowieso schon teil eines git Projekts ist): `git init`
 4. Zielordner für das Kopieren der Daten erstellen `mkdir data`
-5. Clone Data to local folder, also adds the data to the .gitignore. Note: The Project must be git tracked! `lakectl local clone lakefs://repo-name/dev/data/ data`
+5. Clone Data to local folder, also adds the data to the .gitignore. Note: The Project must be git tracked! `lakectl local clone lakefs://repo-name/dev/data/ data` 
 6. (for later update use `lakectl local checkout`)
 7. ... process_data.py
 8. `lakectl local status data/` shows the changes
