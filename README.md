@@ -31,7 +31,7 @@ docker compose up
 - Testen: `lakectl repo list`
 
 ## 2. Setup MinIO Bucket, LakeFS Repo and upload data:
-1. MinIO Bucket erstellen (`mc mb localminio/bucket-name`)
+1. MinIO Bucket erstellen (`mc mb remoteminio/bucket-name`)
 2. LakeFS Repository erstellen (`lakectl repo create lakefs://repo-name s3://bucket-name`)
 3. Evtl. Ordner und Daten erstellen (`mkdir -p data ; cd data && echo "das ist ein test text" > testfile.txt && cd ..`)
 3. Daten uploaden: `mc cp ./data/ lakefs/repo-name/main/data --recursive`
