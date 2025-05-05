@@ -35,8 +35,9 @@ docker compose up
 1. MinIO Bucket erstellen (`mc mb minio/irisbucket`)
 2. LakeFS Repository erstellen (`lakectl repo create lakefs://irisrepo s3://irisbucket`)
 3. Evtl. Ordner und Daten erstellen (`mkdir -p data ; cd data && echo "das ist ein test text" > testfile.txt && cd ..`)
-3. Daten uploaden: `mc cp ./data/ lakefs/repo-name/main/data --recursive`
-4. Commit data: `lakectl commit lakefs://repo-name/main -m "Upload data" `
+3. Or: create venv and run `python3 get_data.py`
+3. Daten uploaden: `mc cp ./data/ lakefs/irisrepo/main/data --recursive`
+4. Commit data: `lakectl commit lakefs://irisrepo/main -m "Upload data" `
 
 ## 2.1 Setup local machine for remote server
 1. Set mc aliases:
