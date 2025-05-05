@@ -4,3 +4,4 @@ data/*
 # End ignored by lakectl local
 .venv/
 using_it
+.vscode
