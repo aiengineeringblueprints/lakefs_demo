@@ -32,7 +32,7 @@ docker compose up
 - Testen: `lakectl repo list`
 
 ## 2. Setup MinIO Bucket, LakeFS Repo and upload data:
-1. MinIO Bucket erstellen (`mc mb minio/irisbucket`)
+1. MinIO Bucket erstellen (`mc mb localminio/irisbucket`)
 2. LakeFS Repository erstellen (`lakectl repo create lakefs://irisrepo s3://irisbucket`)
 3. Evtl. Ordner und Daten erstellen (`mkdir -p data ; cd data && echo "das ist ein test text" > testfile.txt && cd ..`)
 3. Or: create venv and run `python3 get_data.py`
